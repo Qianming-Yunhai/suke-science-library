@@ -11,6 +11,17 @@ window.resourceLinks = [
     note: "可放核心概念、公式理解、例题拆解和课堂观察记录。"
   },
   {
+    title: "七年级下物理：视频课程",
+    grade: "七年级",
+    subject: "物理",
+    chapter: "七年级下物理",
+    type: "视频课程",
+    audience: "学生可见",
+    url: "",
+    code: "",
+    note: "可放章节微课、课堂回放、实验演示视频链接。"
+  },
+  {
     title: "九年级化学：酸碱盐专题练习",
     grade: "九年级",
     subject: "化学",
@@ -20,6 +31,17 @@ window.resourceLinks = [
     url: "",
     code: "",
     note: "适合放基础题、提升题、分类训练。"
+  },
+  {
+    title: "九年级物理：中考资料",
+    grade: "九年级",
+    subject: "物理",
+    chapter: "中考复习",
+    type: "中考资料",
+    audience: "学生可见",
+    url: "",
+    code: "",
+    note: "可放中考真题分类、专题复习、易错题和冲刺资料。"
   },
   {
     title: "七年级数学：有理数技巧总结",

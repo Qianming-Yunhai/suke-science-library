@@ -72,7 +72,8 @@
             <span>讲义</span>
             <span>练习题</span>
             <span>技巧总结</span>
-            <span>同步练习</span>
+            <span>视频课程</span>
+            <span>中考资料</span>
           </div>
         </aside>
       </section>
@@ -89,11 +90,11 @@
             </article>
             <article>
               <span>课堂</span>
-              <strong>技巧总结 / 方法归纳</strong>
+              <strong>技巧总结 / 视频课程</strong>
             </article>
             <article>
               <span>检测</span>
-              <strong>练习题 / 分层训练</strong>
+              <strong>练习题 / 中考资料</strong>
             </article>
           </div>
         </div>
@@ -127,11 +128,13 @@
               <option>讲义</option>
               <option>练习题</option>
               <option>技巧总结</option>
+              <option>视频课程</option>
+              <option>中考资料</option>
             </select>
           </label>
           <label>
             <span>关键词</span>
-            <input id="teacherKeyword" type="search" placeholder="如：一元一次方程、浮力、酸碱盐" />
+            <input id="teacherKeyword" type="search" placeholder="如：七年级下物理、九年级化学中考专题" />
           </label>
           <button id="teacherSearch" type="button">查找资料</button>
           <p id="searchResult" class="finder-result">请选择条件后查找，后续可接入真实资料文件。</p>
@@ -213,7 +216,7 @@
             <div class="subject-icon math">∑</div>
             <div>
               <h3>数学</h3>
-              <p>教师侧放讲义、练习题、技巧总结；学生侧放知识梳理、例题和练习。</p>
+              <p>教师侧放讲义、练习题、技巧总结、视频课程和中考资料；学生侧放知识梳理、例题和练习。</p>
             </div>
             <ul>
               <li>七至九年级全覆盖</li>
@@ -273,7 +276,7 @@
           <article>
             <span class="tag">01</span>
             <h3>教师备课区</h3>
-            <p>放讲义、练习题、技巧总结、课堂活动和详细解析，默认不直接给学生看。</p>
+            <p>放讲义、练习题、技巧总结、视频课程、中考资料和详细解析，默认不直接给学生看。</p>
           </article>
           <article>
             <span class="tag">02</span>
@@ -297,7 +300,7 @@
         <div class="section-title">
           <p class="eyebrow">资料上传</p>
           <h2>推荐用“网盘存文件，网站挂链接”</h2>
-          <p class="section-note">当前网站是静态网站，不直接保存文件。最稳的做法是把讲义、练习题、技巧总结放到网盘，再把分享链接登记到网站资料表里。</p>
+          <p class="section-note">当前网站是静态网站，不直接保存文件。最稳的做法是把讲义、练习题、技巧总结、视频课程和中考资料放到网盘，再把分享链接登记到网站资料表里。</p>
         </div>
 
         <div class="upload-layout">
@@ -305,7 +308,7 @@
             <span class="publish-step">流程</span>
             <ol>
               <li>在网盘里按年级、学科、章节建文件夹。</li>
-              <li>把讲义、练习题、技巧总结上传到对应文件夹。</li>
+              <li>把讲义、练习题、技巧总结、视频课程、中考资料上传到对应文件夹。</li>
               <li>为学生资料生成公开分享链接，教师资料设置私密或提取码。</li>
               <li>把链接填入 <strong>resources-data.js</strong>，网站自动显示。</li>
             </ol>
@@ -317,6 +320,7 @@
             <p>年级-学科-章节-资料类型-适用对象</p>
             <code>八年级-物理-浮力-讲义-学生可见</code>
             <code>九年级-化学-酸碱盐-技巧总结-教师内部</code>
+            <code>九年级-物理-中考复习-中考资料-学生可见</code>
           </article>
         </div>
 

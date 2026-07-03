@@ -30,7 +30,7 @@ if (teacherSearch && searchResult) {
     const keywordText = keyword ? `，关键词：${keyword}` : "";
     const matches = resourceLinks.filter((item) => {
       const typeMatched = type === "全部资料" || item.type === type;
-      const keywordSource = `${item.title} ${item.chapter} ${item.note}`;
+      const keywordSource = `${item.title} ${item.grade} ${item.subject} ${item.chapter} ${item.type} ${item.note}`;
       return (
         item.grade === grade &&
         item.subject === subject &&
