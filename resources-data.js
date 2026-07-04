@@ -1,57 +1,82 @@
-window.resourceLinks = [
+window.portfolioWorks = [
   {
-    title: "八年级物理：浮力讲义",
-    grade: "八年级",
-    subject: "物理",
-    chapter: "浮力",
-    type: "讲义",
-    audience: "学生可见",
-    url: "",
-    code: "",
-    note: "可放核心概念、公式理解、例题拆解和课堂观察记录。"
+    title: "城市折线",
+    category: "city",
+    categoryLabel: "城市",
+    year: "2026",
+    location: "Guangzhou",
+    image:
+      "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1200&q=86",
+    alt: "现代建筑线条与天空"
   },
   {
-    title: "七年级下物理：视频课程",
-    grade: "七年级",
-    subject: "物理",
-    chapter: "七年级下物理",
-    type: "视频课程",
-    audience: "学生可见",
-    url: "",
-    code: "",
-    note: "可放章节微课、课堂回放、实验演示视频链接。"
+    title: "午后肖像",
+    category: "portrait",
+    categoryLabel: "人像",
+    year: "2025",
+    location: "Studio",
+    image:
+      "https://images.unsplash.com/photo-1492447166138-50c3889fccb1?auto=format&fit=crop&w=1200&q=86",
+    alt: "自然光下的人像"
   },
   {
-    title: "九年级化学：酸碱盐专题练习",
-    grade: "九年级",
-    subject: "化学",
-    chapter: "酸碱盐",
-    type: "练习题",
-    audience: "学生可见",
-    url: "",
-    code: "",
-    note: "适合放基础题、提升题、分类训练。"
+    title: "远山之前",
+    category: "travel",
+    categoryLabel: "旅行/徒步",
+    year: "2025",
+    location: "Yunnan",
+    image:
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=86",
+    alt: "远山、草地与人物"
   },
   {
-    title: "九年级物理：中考资料",
-    grade: "九年级",
-    subject: "物理",
-    chapter: "中考复习",
-    type: "中考资料",
-    audience: "学生可见",
-    url: "",
-    code: "",
-    note: "可放中考真题分类、专题复习、易错题和冲刺资料。"
+    title: "桌面秩序",
+    category: "vlog",
+    categoryLabel: "vlog视频",
+    year: "2026",
+    location: "Home",
+    image:
+      "https://images.unsplash.com/photo-1516387938699-a93567ec168e?auto=format&fit=crop&w=1200&q=86",
+    alt: "桌面上的工作物件"
   },
   {
-    title: "七年级数学：有理数技巧总结",
-    grade: "七年级",
-    subject: "数学",
-    chapter: "有理数",
-    type: "技巧总结",
-    audience: "教师备课",
-    url: "",
-    code: "",
-    note: "整理常见题型、易错点、计算技巧和方法归纳。"
+    title: "夜色边缘",
+    category: "city",
+    categoryLabel: "城市",
+    year: "2024",
+    location: "Shanghai",
+    image:
+      "https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1200&q=86",
+    alt: "城市夜景与高楼"
+  },
+  {
+    title: "风经过的房间",
+    category: "portrait",
+    categoryLabel: "人像",
+    year: "2026",
+    location: "Apartment",
+    image:
+      "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=1200&q=86",
+    alt: "窗边人物肖像"
+  },
+  {
+    title: "海岸短暂停留",
+    category: "travel",
+    categoryLabel: "旅行/徒步",
+    year: "2024",
+    location: "Xiamen",
+    image:
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=86",
+    alt: "海岸与浪花"
+  },
+  {
+    title: "白色器物",
+    category: "vlog",
+    categoryLabel: "vlog视频",
+    year: "2025",
+    location: "Atelier",
+    image:
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=86",
+    alt: "室内空间与简洁器物"
   }
 ];

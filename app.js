@@ -1,91 +1,111 @@
-const gradeButtons = document.querySelectorAll(".grade-switch button");
-const subjectCards = document.querySelectorAll(".subject-card");
-const teacherSearch = document.querySelector("#teacherSearch");
-const searchResult = document.querySelector("#searchResult");
-const linkList = document.querySelector("#linkList");
-const resourceLinks = window.resourceLinks || [];
+const works = window.portfolioWorks || [];
+const workGrid = document.querySelector("#workGrid");
+const filterButtons = document.querySelectorAll("[data-filter]");
+const revealItems = document.querySelectorAll("[data-reveal]");
+const parallaxItems = document.querySelectorAll(".parallax");
+const lightbox = document.querySelector("#lightbox");
+const lightboxImage = lightbox?.querySelector("img");
+const lightboxTitle = lightbox?.querySelector("strong");
+const lightboxMeta = lightbox?.querySelector("span");
+const lightboxClose = lightbox?.querySelector(".lightbox-close");
 
-function showGrade(grade) {
-  subjectCards.forEach((card) => {
-    const grades = card.dataset.grade.split(" ");
-    const shouldShow = grade === "all" || grades.includes(grade);
-    card.classList.toggle("is-hidden", !shouldShow);
+function renderWorks(filter = "all") {
+  if (!workGrid) return;
+
+  const filtered = works.filter((work) => filter === "all" || work.category === filter);
+  workGrid.innerHTML = "";
+
+  filtered.forEach((work, index) => {
+    const card = document.createElement("article");
+    card.className = "work-card";
+    card.dataset.reveal = "";
+    card.style.setProperty("--delay", `${index * 60}ms`);
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.setAttribute("aria-label", `查看作品：${work.title}`);
+
+    const image = document.createElement("img");
+    image.src = work.image;
+    image.alt = work.alt;
+    image.loading = "lazy";
+
+    const meta = document.createElement("div");
+    meta.className = "work-meta";
+    meta.innerHTML = `<span>${work.categoryLabel}</span><strong>${work.title}</strong><small>${work.location} · ${work.year}</small>`;
+
+    button.append(image, meta);
+    button.addEventListener("click", () => openLightbox(work));
+    card.append(button);
+    workGrid.append(card);
+  });
+
+  observeReveals();
+}
+
+function observeReveals() {
+  const items = document.querySelectorAll("[data-reveal]:not(.is-visible)");
+  if (!("IntersectionObserver" in window)) {
+    items.forEach((item) => item.classList.add("is-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries, entryObserver) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        entryObserver.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.18 }
+  );
+
+  items.forEach((item) => observer.observe(item));
+}
+
+function updateParallax() {
+  const scrollY = window.scrollY;
+  parallaxItems.forEach((item) => {
+    const depth = Number(item.dataset.depth || 0);
+    item.style.transform = `translate3d(0, ${scrollY * depth}px, 0)`;
   });
 }
 
-gradeButtons.forEach((button) => {
+function openLightbox(work) {
+  if (!lightbox || !lightboxImage || !lightboxTitle || !lightboxMeta) return;
+  lightboxImage.src = work.image;
+  lightboxImage.alt = work.alt;
+  lightboxTitle.textContent = work.title;
+  lightboxMeta.textContent = `${work.categoryLabel} · ${work.location} · ${work.year}`;
+  lightbox.setAttribute("aria-hidden", "false");
+  document.body.classList.add("is-locked");
+}
+
+function closeLightbox() {
+  if (!lightbox || !lightboxImage) return;
+  lightbox.setAttribute("aria-hidden", "true");
+  lightboxImage.src = "";
+  document.body.classList.remove("is-locked");
+}
+
+filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    gradeButtons.forEach((item) => item.classList.remove("is-active"));
+    filterButtons.forEach((item) => item.classList.remove("is-active"));
     button.classList.add("is-active");
-    showGrade(button.dataset.grade);
+    renderWorks(button.dataset.filter);
   });
 });
 
-if (teacherSearch && searchResult) {
-  teacherSearch.addEventListener("click", () => {
-    const grade = document.querySelector("#teacherGrade").value;
-    const subject = document.querySelector("#teacherSubject").value;
-    const type = document.querySelector("#teacherType").value;
-    const keyword = document.querySelector("#teacherKeyword").value.trim();
-    const keywordText = keyword ? `，关键词：${keyword}` : "";
-    const matches = resourceLinks.filter((item) => {
-      const typeMatched = type === "全部资料" || item.type === type;
-      const keywordSource = `${item.title} ${item.grade} ${item.subject} ${item.chapter} ${item.type} ${item.note}`;
-      return (
-        item.grade === grade &&
-        item.subject === subject &&
-        typeMatched &&
-        keywordSource.includes(keyword)
-      );
-    });
+window.addEventListener("scroll", updateParallax, { passive: true });
+lightboxClose?.addEventListener("click", closeLightbox);
+lightbox?.addEventListener("click", (event) => {
+  if (event.target === lightbox) closeLightbox();
+});
+window.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeLightbox();
+});
 
-    searchResult.textContent = `正在查找：${grade} · ${subject} · ${type}${keywordText}。找到 ${matches.length} 条示例资料；填入真实网盘链接后即可打开。`;
-    renderLinks(matches.length ? matches : resourceLinks);
-  });
-}
-
-function renderLinks(items) {
-  if (!linkList) return;
-
-  linkList.innerHTML = "";
-
-  items.forEach((item) => {
-    const card = document.createElement("article");
-    card.className = "link-card";
-
-    const meta = document.createElement("span");
-    meta.className = "link-meta";
-    meta.textContent = `${item.grade} · ${item.subject} · ${item.type}`;
-
-    const title = document.createElement("h3");
-    title.textContent = item.title;
-
-    const note = document.createElement("p");
-    note.textContent = item.note;
-
-    const footer = document.createElement("div");
-    footer.className = "link-footer";
-
-    const audience = document.createElement("span");
-    audience.textContent = item.audience;
-
-    if (item.url) {
-      const link = document.createElement("a");
-      link.href = item.url;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.textContent = item.code ? `打开链接 · 提取码 ${item.code}` : "打开链接";
-      footer.append(audience, link);
-    } else {
-      const empty = document.createElement("span");
-      empty.className = "link-button is-disabled";
-      empty.textContent = "待填写链接";
-      footer.append(audience, empty);
-    }
-
-    card.append(meta, title, note, footer);
-    linkList.append(card);
-  });
-}
-
-renderLinks(resourceLinks);
+renderWorks();
+observeReveals();
+updateParallax();
